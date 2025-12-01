@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metas Financeiras - Completo</title>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- jsPDF -->
+<script src="js/jspdf.umd.min.js"></script>
+
+<!-- Fonte -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- Tema -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="phone">
+
+    <!-- LISTA DE METAS -->
+    <section id="metas" class="screen active">
+        <header>Minhas Metas</header>
+        <div class="card" id="listaMetas"></div>
+        <button class="btn btn-primary" onclick="mostrar('cadastro')">Nova Meta</button>
+    </section>
+
+    <!-- CADASTRO -->
+    <section id="cadastro" class="screen">
+        <header>invista em sua Meta</header>
+        <div class="card">
+            <div class="input-group">
+                <label>Nome da Meta</label>
+                <input type="text" id="metaNome">
+            </div>
+            <div class="input-group">
+                <label>Valor total da meta</label>
+                <input type="number" id="metaValor">
+            </div>
+            <div class="input-group">
+                <label>Prazo (meses)</label>
+                <select id="metaPrazo">
+                    <option value="6">6 meses</option>
+                    <option value="12" selected>12 meses</option>
+                    <option value="24">24 meses</option>
+                    <option value="36">36 meses</option>
+                    <option value="48">48 meses</option>
+                    <option value="60">60 meses</option>
+                    <option value="72">72 meses</option>
+                    <option value="80">80 meses</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Data de início</label>
+                <input type="date" id="metaDataInicio">
+            </div>
+            <button class="btn btn-primary" onclick="cadastrarMeta()">Salvar</button>
+        </div>
+    </section>
+
+    <!-- PROGRESSO -->
+    <section id="progresso" class="screen">
+        <header id="nomeMetaAtiva">Progresso</header>
+        <div class="card">
+            <p>Progresso acumulado:</p>
+            <div id="circle" class="progress-circle"><h2 id="percentual">0%</h2></div>
+            <h2 id="valorAcumulado">R$ 0,00</h2>
+            <p id="valorFaltante">Faltam R$ 0,00</p>
+            <button class="btn btn-secondary" onclick="gerarPDF()">Gerar PDF</button>
+        </div>
+        <div class="card">
+            <h3>Extrato</h3>
+            <div id="listaExtrato"></div>
+        </div>
+        <div class="card">
+            <h3>Gráfico Mensal</h3>
+            <canvas id="graficoContribuicoes"></canvas>
+        </div>
+    </section>
+
+    <!-- ADICIONAR VALOR -->
+    <section id="adicionar" class="screen">
+        <header>Adicionar Valor</header>
+        <div class="card">
+            <label>Valor a adicionar</label>
+            <input type="number" id="addValor">
+            <button class="btn btn-secondary" onclick="adicionar()">Salvar</button>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <div class="nav">
+        <button id="btnMetas" onclick="mostrar('metas')" class="active">📋 Metas</button>
+        <button id="btnProgresso" onclick="mostrar('progresso')">📊 Progresso</button>
+        <button id="btnAdicionar" onclick="mostrar('adicionar')">➕ Adicionar</button>
+        <button id="btnTema" onclick="alternarTema()">🌙 Tema</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
